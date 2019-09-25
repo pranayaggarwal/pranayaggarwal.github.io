@@ -345,8 +345,8 @@ button:focus {
 .home_banner_area {
   z-index: 1;
   background: url(../img/banner/home-banner.png) no-repeat top center;
-  background-position: center;
-  background-size: cover; }
+  background-position: left;
+  background-size: 50%; }
   .home_banner_area .banner_inner {
     width: 100%; }
     .home_banner_area .banner_inner .home_right_img {
