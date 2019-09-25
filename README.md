@@ -1,2 +1,2 @@
-# pranayaggarwal.github.io
+# pranayaggarwal25.github.io
 Personal page 
