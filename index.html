@@ -837,10 +837,10 @@ Proud presenter and winner of <a href="https://cppcon.org/2019-poster-program/" 
 					</span>
 
 				<p class="text-center">
-					<button name="submit" type="submit" class="btn btn-meflat icon-left" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent"><i class="fa fa-paper-plane"></i>Send Message</button>
+					<button id="contactFormSubmit" name="submit" type="submit" class="btn btn-meflat icon-left" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent"><i class="fa fa-paper-plane"></i><a>Send Message</a></button>
 				</p>
-				<input type="hidden" name="submitted" id="submitted" value="Send" />
-
+<!-- 				<input type="hidden" name="submitted" id="submitted" value="Send" />
+ -->
 			</form>
 
 		</div>
@@ -985,6 +985,57 @@ Proud presenter and winner of <a href="https://cppcon.org/2019-poster-program/" 
 		              
 		        }
             });
+
+
+  		$(document).ready(function() {
+    				    
+				    var form = document.getElementById("contact-form");
+
+				    // Success and Error functions for after the form is submitted
+				    
+				    function success() {
+				    	$("#contact-form").trigger('reset');
+				    	setTimeout(function(){  
+				    		$("#contactFormSubmit").children("a").text("Send Message"); 
+				    	}, 3000);
+				    	$("#contactFormSubmit").children("a").text("Done, Thanks!!");
+				    }
+
+				    function error() {
+				    	$("#contact-form").trigger('reset');
+				    	setTimeout(function(){  
+				    		$("#contactFormSubmit").children("a").text("Send Message"); 
+				    	}, 3000);
+				    	$("#contactFormSubmit").children("a").text("Oops, Couldn't contact.");
+				    }
+
+				    // handle the form submission event
+
+				    form.addEventListener("submit", function(ev) {
+				      ev.preventDefault();
+				      var data = new FormData(form);
+				      ajax(form.method, form.action, data, success, error);
+				    });
+  		});
+
+
+				  
+		  // helper function for sending an AJAX request
+
+		  function ajax(method, url, data, success, error) {
+		    var xhr = new XMLHttpRequest();
+		    xhr.open(method, url);
+		    xhr.setRequestHeader("Accept", "application/json");
+		    xhr.onreadystatechange = function() {
+		      if (xhr.readyState !== XMLHttpRequest.DONE) return;
+		      if (xhr.status === 200) {
+		        success(xhr.response, xhr.responseType);
+		      } else {
+		        error(xhr.status, xhr.response, xhr.responseType);
+		      }
+		    };
+		    xhr.send(data);
+		  }
 
 	</script>
 
