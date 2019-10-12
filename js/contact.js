@@ -8,7 +8,7 @@ $(document).ready(function() {
     	$("#contact-form").trigger('reset');
     	setTimeout(function(){  
     		$("#contactFormSubmit").html("<i class='fa fa-paper-plane'></i><a>Send Message</a>")
-    	}, 5000);
+    	}, 3000);
 
     	$("#contactFormSubmit").html("<i class='fa fa-check'></i><a>Done, Thanks!!</a>")
     }
@@ -17,7 +17,7 @@ $(document).ready(function() {
     	$("#contact-form").trigger('reset');
     	setTimeout(function(){  
     		$("#contactFormSubmit").html("<i class='fa fa-paper-plane'></i><a>Send Message</a>")
-    	}, 5000);
+    	}, 3000);
 
     	$("#contactFormSubmit").html("<i class='fa fa-times'></i><a>Oops, Error!</a>")
     }
@@ -98,11 +98,11 @@ $(document).ready(function() {
 			// $.post($(this).attr('action'),formInput, function(data){
 			// 	$('#contact-form button').html('<i class="fa fa-check"></i><a>'+okMessage+'</a>');
 			// 	$('#contact-form')[0].reset();
-			// 	setTimeout(function(){
-			// 		$('#contact-form button').html(buttonCopy);
-			// 		$('#contact-form button').width('auto');
-			// 		$('#contact-form').removeClass('clicked');
-			// 	},2000);
+			 	setTimeout(function(){
+			 		$('#contact-form button').html(buttonCopy);
+			 		$('#contact-form button').width('auto');
+			 		$('#contact-form').removeClass('clicked');
+			 	},2000);
 				
 			// });
 		}
