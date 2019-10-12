@@ -1,4 +1,50 @@
 $(document).ready(function() {
+
+	var form = document.getElementById("contact-form");
+
+    // Success and Error functions for after the form is submitted
+    
+    function success() {
+    	$("#contact-form").trigger('reset');
+    	setTimeout(function(){  
+    		$("#contactFormSubmit").html("<i class='fa fa-paper-plane'></i><a>Send Message</a>")
+    	}, 5000);
+
+    	$("#contactFormSubmit").html("<i class='fa fa-check'></i><a>Done, Thanks!!</a>")
+    }
+
+    function error() {
+    	$("#contact-form").trigger('reset');
+    	setTimeout(function(){  
+    		$("#contactFormSubmit").html("<i class='fa fa-paper-plane'></i><a>Send Message</a>")
+    	}, 5000);
+
+    	$("#contactFormSubmit").html("<i class='fa fa-times'></i><a>Oops, Error!</a>")
+    }
+
+	function ajax(method, url, data, success, error) {
+	    var xhr = new XMLHttpRequest();
+	    xhr.open(method, url);
+	    xhr.setRequestHeader("Accept", "application/json");
+	    xhr.onreadystatechange = function() {
+	      if (xhr.readyState !== XMLHttpRequest.DONE) return;
+	      if (xhr.status === 200) {
+	        success(xhr.response, xhr.responseType);
+	      } else {
+	        error(xhr.status, xhr.response, xhr.responseType);
+	      }
+	    };
+	    xhr.send(data);
+	  }
+
+
+    // handle the form submission event
+
+    // form.addEventListener("submit", function(ev) {
+    //   ev.preventDefault();
+
+    // });
+
 	$('#contact-form').submit(function() {
 		
 		if($('#contact-form').hasClass('clicked')){
@@ -36,7 +82,7 @@ $(document).ready(function() {
 		});
 		
 		if(hasError) {
-			$('#contact-form button').html('<i class="fa fa-times"></i>'+errorMessage);
+			$('#contact-form button').html('<i class="fa fa-times"></i><a>'+errorMessage+'</a>');
 			setTimeout(function(){
 				$('#contact-form button').html(buttonCopy);
 				$('#contact-form button').width('auto');
@@ -44,19 +90,21 @@ $(document).ready(function() {
 			},2000);
 		}
 		else {
-			$('#contact-form button').html('<i class="fa fa-spinner fa-spin"></i>'+sendingMessage);
-			
-			var formInput = $(this).serialize();
-			$.post($(this).attr('action'),formInput, function(data){
-				$('#contact-form button').html('<i class="fa fa-check"></i>'+okMessage);
-				$('#contact-form')[0].reset();
-				setTimeout(function(){
-					$('#contact-form button').html(buttonCopy);
-					$('#contact-form button').width('auto');
-					$('#contact-form').removeClass('clicked');
-				},2000);
+			$('#contact-form button').html('<i class="fa fa-spinner fa-spin"></i><a>'+sendingMessage+'</a>');
+			var data = new FormData(form);
+      		ajax(form.method, form.action, data, success, error);
+
+			// var formInput = $(this).serialize();
+			// $.post($(this).attr('action'),formInput, function(data){
+			// 	$('#contact-form button').html('<i class="fa fa-check"></i><a>'+okMessage+'</a>');
+			// 	$('#contact-form')[0].reset();
+			// 	setTimeout(function(){
+			// 		$('#contact-form button').html(buttonCopy);
+			// 		$('#contact-form button').width('auto');
+			// 		$('#contact-form').removeClass('clicked');
+			// 	},2000);
 				
-			});
+			// });
 		}
 		
 		return false;	
