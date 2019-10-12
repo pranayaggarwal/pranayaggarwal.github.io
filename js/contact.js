@@ -1,85 +1,64 @@
-$(document).ready(function(){
-    
-    (function($) {
-        "use strict";
-
-    
-    jQuery.validator.addMethod('answercheck', function (value, element) {
-        return this.optional(element) || /^\bcat\b$/.test(value)
-    }, "type the correct answer -_-");
-
-    // validate contactForm form
-    $(function() {
-        $('#contactForm').validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                subject: {
-                    required: true,
-                    minlength: 4
-                },
-                number: {
-                    required: true,
-                    minlength: 5
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                message: {
-                    required: true,
-                    minlength: 20
-                }
-            },
-            messages: {
-                name: {
-                    required: "come on, you have a name, don't you?",
-                    minlength: "your name must consist of at least 2 characters"
-                },
-                subject: {
-                    required: "come on, you have a subject, don't you?",
-                    minlength: "your subject must consist of at least 4 characters"
-                },
-                number: {
-                    required: "come on, you have a number, don't you?",
-                    minlength: "your Number must consist of at least 5 characters"
-                },
-                email: {
-                    required: "no email, no message"
-                },
-                message: {
-                    required: "um...yea, you have to write something to send this form.",
-                    minlength: "thats all? really?"
-                }
-            },
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    type:"POST",
-                    data: $(form).serialize(),
-                    url:"contact_process.php",
-                    success: function() {
-                        $('#contactForm :input').attr('disabled', 'disabled');
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor','default');
-                            $('#success').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#success').modal('show');
-                        })
-                    },
-                    error: function() {
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $('#error').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#error').modal('show');
-                        })
-                    }
-                })
-            }
-        })
-    })
-        
- })(jQuery)
-})
+$(document).ready(function() {
+	$('#contact-form').submit(function() {
+		
+		if($('#contact-form').hasClass('clicked')){
+				return false;
+			}
+		
+		$('#contact-form').addClass('clicked');
+		
+		var buttonWidth=$('#contact-form button').width();
+		
+		var buttonCopy = $('#contact-form button').html(),
+			errorMessage = $('#contact-form button').data('error-message'),
+			sendingMessage = $('#contact-form button').data('sending-message'),
+			okMessage = $('#contact-form button').data('ok-message'),
+			hasError = false;
+		
+		$('#contact-form button').width(buttonWidth);
+		$('#contact-form .error-message').remove();
+		
+		$('.requiredField').each(function() {
+			if($.trim($(this).val()) == '') {
+				var errorText = $(this).data('error-empty');
+				$(this).parents('.field-wrap').append('<span class="error-message" style="display:none;">'+errorText+'.</span>').find('.error-message').fadeIn('fast');
+				$(this).addClass('inputError');
+				hasError = true;
+			} else if($(this).is("input[type='email']") || $(this).attr('name')==='email') {
+				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,10})?$/;
+				if(!emailReg.test($.trim($(this).val()))) {
+					var invalidEmail = $(this).data('error-invalid');
+					$(this).parents('.field-wrap').append('<span class="error-message" style="display:none;">'+invalidEmail+'.</span>').find('.error-message').fadeIn('fast');
+					$(this).addClass('inputError');
+					hasError = true;
+				}
+			}
+		});
+		
+		if(hasError) {
+			$('#contact-form button').html('<i class="fa fa-times"></i>'+errorMessage);
+			setTimeout(function(){
+				$('#contact-form button').html(buttonCopy);
+				$('#contact-form button').width('auto');
+				$('#contact-form').removeClass('clicked');
+			},2000);
+		}
+		else {
+			$('#contact-form button').html('<i class="fa fa-spinner fa-spin"></i>'+sendingMessage);
+			
+			var formInput = $(this).serialize();
+			$.post($(this).attr('action'),formInput, function(data){
+				$('#contact-form button').html('<i class="fa fa-check"></i>'+okMessage);
+				$('#contact-form')[0].reset();
+				setTimeout(function(){
+					$('#contact-form button').html(buttonCopy);
+					$('#contact-form button').width('auto');
+					$('#contact-form').removeClass('clicked');
+				},2000);
+				
+			});
+		}
+		
+		return false;	
+	});
+});
