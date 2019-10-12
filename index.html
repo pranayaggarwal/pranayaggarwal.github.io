@@ -834,10 +834,7 @@ Proud presenter and winner of <a href="https://cppcon.org/2019-poster-program/" 
 				<span class="field-wrap scrollimation fade-left">
 						<label class="control-label" for="contact-message">Message</label>
 						<textarea id="contact-message" name="comments" rows="1" class="label_better requiredField" data-new-placeholder="Message" placeholder="Message" data-error-empty="*Enter your message"></textarea>
-					</span>
-
-				<div class="g-recaptcha" id="rcaptcha"  data-sitekey="6Lf7Qr0UAAAAALhy-tfmCjuAdtTNQsnvQ0WnbsB1"></div>
-				<span id="captcha" style="color:red" /></span> <!-- this will show captcha errors -->
+				</span>
 
 				<p class="text-center">
 					<button id="contactFormSubmit" name="submit" type="submit" class="btn btn-meflat icon-left" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent"><i class="fa fa-paper-plane"></i><a>Send Message</a></button>
@@ -990,41 +987,8 @@ Proud presenter and winner of <a href="https://cppcon.org/2019-poster-program/" 
             });
 
 
-  		$(document).ready(function() {
-    				    
-
-
-
-  		});
-
-
-				  
-		  // helper function for sending an AJAX request
-
-
-
 	</script>
 
-
-	<script src='https://www.google.com/recaptcha/api.js'></script>
-<script>
-
-function get_action(form) 
-{
-    var v = grecaptcha.getResponse();
-    if(v.length == 0)
-    {
-        document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
-        return false;
-    }
-    else
-    {
-         document.getElementById('captcha').innerHTML="Captcha completed";
-        return true; 
-    }
-}
-
-</script>
 
 
 </body>
