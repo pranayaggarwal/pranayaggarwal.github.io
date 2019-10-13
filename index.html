@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="css/flexslider.css">
 	<link rel="stylesheet" href="css/meflat-cyan2.css">
 	<link rel="stylesheet" href="css/normalize.min.css">
-    <link rel="stylesheet" href="css/animate.min.css"> -->
+    <link rel="stylesheet" href="css/animate.min.css">  -->
 
 	<link rel="stylesheet" href="css/shrinked.css">
 
@@ -57,6 +57,18 @@
 /*			transition: height 0.1s;
 */		}
 
+@media (max-width: 767px)
+{
+		div.navbar-fixed-top.scrolled a {
+			color: #E58B4C;
+		}
+
+		div.navbar-fixed-top.scrolled {
+		  background-color: #000 !important;
+		  transition: background-color 200ms linear;
+		}
+}
+
 		.btn.btn-meflat.icon-left:active{
 			font-size:larger;
 		}
@@ -74,6 +86,9 @@
 		.services .item .icon {
 		    border: 3px solid #fff;
 		    transition: ease-in-out 0.1s;
+		}
+		ul.social-links {
+			text-align: center;
 		}
 		ul.social-links li a:hover {
 			background-color: black;
@@ -250,10 +265,10 @@
 						<a href="#portfolio" class="scrollto">My Works</a>
 					</li>
 					<li>
-						<a href="https://medium.com/@pranayaggarwal25" target="_blank">Blog</a>
+						<a href="#contact"class="scrollto">Contact Info</a>
 					</li>
 					<li>
-						<a href="#contact"class="scrollto">Contact Info</a>
+						<a href="https://medium.com/@pranayaggarwal25" target="_blank">Blog</a>
 					</li>
 				</ul>
 			</div>
