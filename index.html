@@ -44,6 +44,8 @@
 	<!--[if lt IE 9]>
 			<script src="js/respond.min.js"></script>
 		<![endif]-->
+<script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
+<script>window.LogRocket && window.LogRocket.init('hjrkfm/github-page');</script>
 
 	<script type="text/javascript" src="js/libs/modernizr.min.js"></script>
 	<script type="text/javascript" src="js/buttons.js"></script>
@@ -98,6 +100,10 @@
 		ul.social-links li a {
 			color:white;
 			font-size:x-large;
+		}
+
+		.svgIcon {
+		    display: none;
 		}
 
 		.services .item .icon:hover {
@@ -265,6 +271,9 @@
 						<a href="#portfolio" class="scrollto">My Works</a>
 					</li>
 					<li>
+						<a href="#feat-project" class="scrollto">Talks</a>
+					</li>
+					<li>
 						<a href="#contact"class="scrollto">Contact Info</a>
 					</li>
 					<li>
@@ -334,7 +343,7 @@ In the past several years with Adobe, I have contributed to the new licensing hy
 <br/>
 
 My major interests lie in enabling the full potential of Adobe Fonts for consumers with the modern C++ usage to ensure more secure, reliable & performant applications.
-Proud participant and winner of <a href="https://cppcon.org/2019-poster-program/" target="_blank">CppCon'19 Poster program</a>
+Proud presenter and winner of <a href="https://cppcon.org/2019-poster-program/" target="_blank">CppCon'19 Poster program</a>
 					</p>
 				</div>
 
@@ -802,9 +811,82 @@ Proud participant and winner of <a href="https://cppcon.org/2019-poster-program/
 		<!-- End modal -->
 
 	</section>
+
+	<!-- ==============================================
+		feat project
+		=============================================== -->
+
+
+	<section id="feat-project" class="padding-top" style="padding-bottom: 100px;">
+
+		<div class="container">
+
+			<header class="section-header text-center">
+
+				<h1 class="scrollimation scale-in">Talks</h1>
+				<p>
+					Online Available Talks from CppCon, 2019.
+				</p>
+			</header>
+
+			<div class="row" style="text-align: center;">
+				<div class="col-md-6 col-sm-6 item scrollimation fade-up">
+
+						<iframe id="video" width="420" height="315" src="https://www.youtube.com/watch?v=eP5zOeDFzl4" frameborder="0" allowfullscreen></iframe>
+
+				</div>
+
+				<div class="col-md-6 col-sm-6 item scrollimation fade-up">
+
+						<iframe id="video" width="420" height="315" src="https://www.youtube.com/watch?v=h-U9L67R1jE" frameborder="0" allowfullscreen></iframe>
+
+				</div>
+			</div>
+
+		</div>
+			
+			<!--
+			<header class="section-header text-center">
+
+				<h1 class="scrollimation scale-in">Omnidome</h1>
+				<p>
+					OMNIDOME is an arbitrary surface projection mapping tool for MacOS X and Linux.
+					It allows you to map any physical room and project virtual content back on to it.
+					What it does, it turns the whole world into a 360° VR display, making VR a shared and social
+					experience.
+				</p>
+
+				<p>
+					 Omnidome is OpenSource, multi-platform and designed for artists.
+					 It is written in C++11 using the Qt5 framework. Checkout the <a href="https://github.com/cr8tr/omnidome">source code.</a>
+				</p>
+
+			</header>
+
+			<div class="scrollimation fade-up">
+
+				<div class="img-wrapper">
+
+					<img class="img-responsive img-center" src="assets/omnidome.png" alt="" />
+
+					<p class="text-center on-hover"><a class="btn btn-meflat icon-right" href="http://omnido.me">
+							Visit Website<i class="fa fa-arrow-right"></i></a></p>
+				</div>
+			</div>
+
+			-->
+
+	</section>  
 	<!-- ==============================================
 		DRIBBLE
 		=============================================== -->
+
+	<section id="talks">
+		<div class="row">
+
+		</div>
+	</section>
+
 	<section id="dribbble">
 		<div class="row">
 			<div class="col-md-2 col-sm-4 col-xs-6">
@@ -837,7 +919,7 @@ Proud participant and winner of <a href="https://cppcon.org/2019-poster-program/
 			<header class="section-header text-center">
 
 				<h1 class="scrollimation scale-in">Contact</h1>
-				<p>If you are interested in my work or software talks (CppCon talks will be uploaded and linked soon), please feel free to drop me a message.
+				<p>If you are interested in my work or software talks, please feel free to drop me a message.
 					<br/>
 				</p>
 			</header>
@@ -874,7 +956,6 @@ Proud participant and winner of <a href="https://cppcon.org/2019-poster-program/
 	<footer id="main-footer" class="dark-bg light-typo">
 
 		<div class="container">
-
 			<hr>
 
 			<div class="row">
